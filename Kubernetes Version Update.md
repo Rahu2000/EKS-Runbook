@@ -15,7 +15,7 @@
 - kubectl
 - [kube-no-trouble](https://github.com/doitintl/kube-no-trouble)
 
-  ```Shell
+  ```Sh
   sh -c "$(curl -sSL https://git.io/install-kubent)"
   ```
 
@@ -25,7 +25,7 @@
 
 - Helm Charts
 
-  ```Shell
+  ```Sh
   # Installed Helm Charts
   helm list -A
 
@@ -43,13 +43,13 @@
 - `cluster-admin` 권한으로 실행
 - 실행
 
-  ```Shell
+  ```Sh
   /usr/local/bin/kubent
   ```
 
 - 실행 결과는 다음 예제와 같이 출력된다.
 
-  ```Shell
+  ```Sh
   $ kubent
   2:29PM INF >>> Kube No Trouble `kubent` <<<
   2:29PM INF version 0.5.1 (git sha a762ff3c6b5622650b86dc982652843cc2bd123c)
@@ -76,7 +76,7 @@
 
   업데이트가 필요한 경우 `--dry-run`옵션을 사용하여 업데이트에 문제가 없는지 먼저 평가한다.
 
-  ```Shell
+  ```Sh
   helm upgrade <RELEASE_NAME> <CHART> --dry-run \
   --version <TARGET_VERSION> \
   -f RELEASE_NAME.yaml
@@ -87,7 +87,7 @@
 ### ETC
 
 - dockerhub를 사용할 경우, `Download rate limit`이 발생할 수 있다. (사전에 고객 관리형 image registry 전환 등을 검토한다.)
-- 클러스터 업데이트 수행 시, 노드 또는 application 재배포에 따른 IP 부족이 발생할 있다.
+- 클러스터 업데이트 수행 시, 노드 또는 application 재배포에 따른 IP 부족이 발생 할 수 있다.
 - `PodDisruptionBudget`가 설정되어 있는 경우, 업데이트 전에 `pdb`를 삭제하거나 deployment의 `.spec.replicas` 설정을 pdb의 `.spec.minAvailable` 보다 크게 설정한다.
 
 ## Process
@@ -98,7 +98,7 @@
 
 - 터미널의 경우
 
-  ```Shell
+  ```sh
   # e.g. aws eks update-cluster-version --name example --kubernetes-version 1.13
   ```
 
@@ -110,7 +110,7 @@
 
 - 터미널의 경우
 
-  ```Shell
+  ```sh
   export OLD_VERSION=1.19 # old version
 
   # add new node or nodegroup
@@ -138,7 +138,7 @@
 
 - 터미널의 경우
 
-  ```Shell
+  ```Sh
   # e.g. aws eks update-nodegroup-version --cluster-name <value> --nodegroup-name <value>
   ```
 
@@ -148,14 +148,14 @@
 
 - Node's kubelet version
 
-  ```Shell
+  ```Sh
   export VERSION='1.19' # target version
   kubectl get nodes | grep "v${VERSION}"
   ```
 
 - Pod's running status
 
-  ```Shell
+  ```Sh
   # 'Non-Running' Pods
   kubectl get pods -A --field-selector status.phase!=Running
 
@@ -165,6 +165,6 @@
 
 - Not normal events
 
-  ```Shell
+  ```Sh
   kubectl get events --field-selector type!=Normal -A
   ```
